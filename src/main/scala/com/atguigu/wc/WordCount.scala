@@ -20,8 +20,8 @@ object WordCount {
     val env: ExecutionEnvironment = ExecutionEnvironment.getExecutionEnvironment
 
     // 2. 从文件中读取数据
-    val inputPath = "D:\\Projects\\BigData\\FlinkTutorial\\src\\main\\resources\\hello.txt"
-    val inputDataSet: DataSet[String] = env.readTextFile(inputPath)
+    val resource = getClass.getResource("/hello.txt")
+    val inputDataSet: DataSet[String] = env.readTextFile(resource.getPath)
 
     // 3. 空格分词，然后map成计数的二元组进行聚合
     val resultDataSet: DataSet[(String, Int)] = inputDataSet
